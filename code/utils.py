@@ -1,3 +1,4 @@
+
 """
 -----------------------------------------------------------------------------------------------
 ------------------------------COVID Dataset Our World in Data----------------------------------
@@ -9,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def GetCOVID_Dataset():
+def GetCOVID_Dataset(start= '2020-02-01', end= '2024-03-31'):
     if not os.path.exists('../data/owd/covid19_world.csv'):
     
         # Read OWID COVID-19 dataset
@@ -19,7 +20,7 @@ def GetCOVID_Dataset():
         rawdata['date'] = pd.to_datetime(rawdata['date'])
 
         # Filter the DataFrame by date range
-        rawdata = rawdata[(rawdata['date'] >= '2020-02-01') & (rawdata['date'] <= '2024-03-31')]
+        rawdata = rawdata[(rawdata['date'] >= start) & (rawdata['date'] <= end)]
 
         # Extract list of continents in dataset
         continents = rawdata['continent'].unique()
@@ -59,8 +60,8 @@ def GetCOVID_Dataset():
                     iso_code = data_i['iso_code']
                     Total_cases = data_i['total_cases']
                     Total_deaths = data_i['total_deaths']
-                    New_cases = data_i['new_cases_smoothed']
-                    New_deaths = data_i['new_deaths_smoothed']
+                    New_cases = data_i['new_cases']
+                    New_deaths = data_i['new_deaths']
                     Population = data_i['population']
                     Density = data_i['population_density']
                     
@@ -88,8 +89,13 @@ def GetCOVID_Dataset():
                     New_cases = New_cases.replace([np.nan], 0)
                     New_deaths = New_deaths.replace([np.nan], 0)
 
-                    # -----------7-day moving average new COVID cases----------
-                    #New_cases = New_cases.rolling(window=7, center=True).mean()
+                    # -----------7-day moving average new COVID cases (2 times)----------
+                    New_cases = New_cases.rolling(window=7, center=True).mean().rolling(window=7, center=True).mean()
+                    New_deaths = New_deaths.rolling(window=7, center=True).mean().rolling(window=7, center=True).mean()
+
+                    Total_cases = New_cases.cumsum()
+                    Total_deaths = New_deaths.cumsum()
+                    
 
                     # -------------------Saving processed data-----------------------------------
                     DataCountry = {'date': list(time),
@@ -117,6 +123,16 @@ def GetCOVID_Dataset():
         FullData = pd.concat(dfs, ignore_index=True)    
         FullData['date']=pd.to_datetime(FullData['date'])
         FullData.loc[FullData['iso3'] == "OWID_KOS", 'iso3'] = 'XKX'
+
+        # Delete first and last week of data, lost during smoothing
+        min_date = FullData['date'].min()
+        max_date = FullData['date'].max()
+
+        start_of_first_week = min_date + pd.DateOffset(weeks=1)
+        end_of_last_week = max_date - pd.DateOffset(weeks=1)
+
+        FullData = FullData[(FullData['date'] >= start_of_first_week) & (FullData['date'] <= end_of_last_week)]
+
         # Save the processed DataFrame as CSV
         filename = os.path.join(data_directory, 'covid19_world.csv')
         FullData.to_csv(filename, index=False)  # Save DataFrame to CSV without index
@@ -135,7 +151,7 @@ import matplotlib.pyplot as plt
 import os
 import re
 
-def GetVariants():
+def GetVariants(start='2020-11-01', end='2021-07-04'):
     if not os.path.exists('../data/gisaid/variants.csv'):
     
         # Read GISAID Statistics
@@ -145,7 +161,7 @@ def GetVariants():
         df['Week prior to'] = pd.to_datetime(df['Week prior to'])
 
         # Filter the DataFrame by date range
-        df = df[(df['Week prior to'] >= '2020-02-01') & (df['Week prior to'] <= '2024-03-31')]
+        df = df[(df['Week prior to'] >= start) & (df['Week prior to'] <= end)]
 
         # Filter DataFrame to show only COVID Variants
         df = df[df['Type'].isin(['Variant'])]
@@ -194,6 +210,17 @@ def GetVariants():
         # }).reset_index()
 
         df.rename(columns={'Country':'country'},inplace=True)
+        df.loc[df['country'] == 'USA', 'country'] = 'United States of America'
+        df.loc[df['country'] == "Cote d'Ivoire", 'country'] = "Côte d'Ivoire"
+        df.loc[df['country'] == "South Sudan", 'country'] = "S. Sudan"
+        df.loc[df['country'] == "Democratic Republic of the Congo", 'country'] = 'Dem. Rep. Congo'
+        df.loc[df['country'] == "Czech Republic", 'country'] = 'Czechia'
+        df.loc[df['country'] == "Bosnia and Herzegovina", 'country'] = 'Bosnia and Herz.'
+        df.loc[df['country'] == "Central African Republic", 'country'] = 'Central African Rep.'
+        df.loc[df['country'] == "Republic of the Congo", 'country'] = 'Congo'
+
+
+        
         
         #Set working directory
         path0 = os.getcwd()
@@ -227,11 +254,9 @@ class ClimateDataProcessor:
         # Data retrieval using CDS API
 
         c = cdsapi.Client()
-        year_months = {'2020': [str(i).zfill(2) for i in range(2, 13)],
-                    '2021': [str(i).zfill(2) for i in range(1, 13)],
-                    '2022': [str(i).zfill(2) for i in range(1, 13)],
-                    '2023': [str(i).zfill(2) for i in range(1, 13)],
-                    '2024': [str(i).zfill(2) for i in range(1, 4)]}
+        year_months = {'2020': [str(i).zfill(2) for i in range(11, 13)],
+                       '2021': [str(i).zfill(2) for i in range(1, 7)]
+                      }
 
         for year, months in year_months.items():
             for month in months:
@@ -381,6 +406,7 @@ def GetSocioEco():
         # Define the indicators to fetch
         indicators = {
             'EN.POP.DNST': 'Population density',
+            'NY.GDP.MKTP.CD': 'GDP',
             "NY.GDP.PCAP.CD": "GDP per capita",
             'NY.GDP.DEFL.KD.ZG': 'Inflation rate',
             "SH.XPD.CHEX.PC.CD": 'Health expenditure per capita',
@@ -410,8 +436,8 @@ def GetSocioEco():
 
         # Merge with ISO3 country codes
         socioeconomic = pd.merge(dfa, wb_to_iso3, left_on='country', right_on='name', how='left')
-        socioeconomic.drop(columns=['id', 'name', 'country_x'], inplace=True)
-        socioeconomic.rename(columns={'country_y': 'country'}, inplace=True)
+        socioeconomic.drop(columns=['id', 'name'], inplace=True)
+        #socioeconomic.rename(columns={'country_y': 'country'}, inplace=True)
 
         # Rearrange columns
         socioeconomic = socioeconomic[socioeconomic.columns[-2:].tolist() + socioeconomic.columns[:-2].tolist()]
