@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def GetCOVID_Dataset(start= '2020-02-01', end= '2024-03-31'):
+def GetCOVID_Dataset(start='2021-01-01', end='2022-06-30'):
     if not os.path.exists('../data/owd/covid19_world.csv'):
     
         # Read OWID COVID-19 dataset
@@ -151,7 +151,7 @@ import matplotlib.pyplot as plt
 import os
 import re
 
-def GetVariants(start='2020-11-01', end='2021-07-04'):
+def GetVariants(start='2021-01-10', end='2022-07-03'):
     if not os.path.exists('../data/gisaid/variants.csv'):
     
         # Read GISAID Statistics
@@ -254,8 +254,8 @@ class ClimateDataProcessor:
         # Data retrieval using CDS API
 
         c = cdsapi.Client()
-        year_months = {'2020': [str(i).zfill(2) for i in range(11, 13)],
-                       '2021': [str(i).zfill(2) for i in range(1, 7)]
+        year_months = {'2021': [str(i).zfill(2) for i in range(1, 13)],
+                       '2022': [str(i).zfill(2) for i in range(1, 7)]
                       }
 
         for year, months in year_months.items():
