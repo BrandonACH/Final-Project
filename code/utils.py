@@ -254,7 +254,7 @@ class ClimateDataProcessor:
         # Data retrieval using CDS API
 
         c = cdsapi.Client()
-        year_months = {'2021': [str(i).zfill(2) for i in range(1, 13)],
+        year_months = {'2021': [str(i).zfill(2) for i in range(1,13)],
                        '2022': [str(i).zfill(2) for i in range(1, 7)]
                       }
 
