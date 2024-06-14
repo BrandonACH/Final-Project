@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def GetCOVID_Dataset(start='2021-01-01', end='2022-06-30'):
+def GetCOVID_Dataset():
     if not os.path.exists('../data/owd/covid19_world.csv'):
     
         # Read OWID COVID-19 dataset
@@ -20,7 +20,7 @@ def GetCOVID_Dataset(start='2021-01-01', end='2022-06-30'):
         rawdata['date'] = pd.to_datetime(rawdata['date'])
 
         # Filter the DataFrame by date range
-        rawdata = rawdata[(rawdata['date'] >= start) & (rawdata['date'] <= end)]
+        #rawdata = rawdata[(rawdata['date'] >= start) & (rawdata['date'] <= end)]
 
         # Extract list of continents in dataset
         continents = rawdata['continent'].unique()
@@ -151,7 +151,7 @@ import matplotlib.pyplot as plt
 import os
 import re
 
-def GetVariants(start='2021-01-10', end='2022-07-03'):
+def GetVariants():
     if not os.path.exists('../data/gisaid/variants.csv'):
     
         # Read GISAID Statistics
@@ -161,7 +161,7 @@ def GetVariants(start='2021-01-10', end='2022-07-03'):
         df['Week prior to'] = pd.to_datetime(df['Week prior to'])
 
         # Filter the DataFrame by date range
-        df = df[(df['Week prior to'] >= start) & (df['Week prior to'] <= end)]
+        #df = df[(df['Week prior to'] >= start) & (df['Week prior to'] <= end)]
 
         # Filter DataFrame to show only COVID Variants
         df = df[df['Type'].isin(['Variant'])]
@@ -220,8 +220,6 @@ def GetVariants(start='2021-01-10', end='2022-07-03'):
         df.loc[df['country'] == "Republic of the Congo", 'country'] = 'Congo'
 
 
-        
-        
         #Set working directory
         path0 = os.getcwd()
         parent_directory = os.path.dirname(path0)
@@ -255,7 +253,8 @@ class ClimateDataProcessor:
 
         c = cdsapi.Client()
         year_months = {'2021': [str(i).zfill(2) for i in range(1,13)],
-                       '2022': [str(i).zfill(2) for i in range(1, 7)]
+                       '2022': [str(i).zfill(2) for i in range(1,13)],
+                       '2023': [str(i).zfill(2) for i in range(1,2)]
                       }
 
         for year, months in year_months.items():
