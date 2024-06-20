@@ -39,7 +39,7 @@ def GetCOVID_Dataset():
         #-----------Creation of directories to save data-------------------------
         path0 = os.getcwd()
         parent_directory = os.path.dirname(path0)
-        data_directory = os.path.join(parent_directory, 'data/owd')
+        data_directory = os.path.join(parent_directory, 'data/covid')
         try:
             os.mkdir(data_directory)
         except OSError:
@@ -160,18 +160,8 @@ def GetVariants():
         # Convert date columns to datetime type
         df['Week prior to'] = pd.to_datetime(df['Week prior to'])
 
-        # Filter the DataFrame by date range
-        #df = df[(df['Week prior to'] >= start) & (df['Week prior to'] <= end)]
-
         # Filter DataFrame to show only COVID Variants
         df = df[df['Type'].isin(['Variant'])]
-
-        # Only keep BA. Omicron Lineages and original Omicron lineage B.1.1.529, all others will be worked only with their name 
-        #df = df[~((df['Type'] == 'Lineage') & (~df['Value'].str.startswith('BA.') | ~df['Value'].str.contains('B.1.1.529')))]
-
-        # # Extracting only one number after the dot for BA.#
-        # mask = df['Type'] == 'Lineage'
-        # df.loc[mask, 'Value'] = df.loc[mask, 'Value'].str.split('.').str[0] + '.' + df.loc[mask, 'Value'].str.split('.').str[1].str[0]
 
         # Add 'Omicron' to corresponding lineages
         mask = df['Value'].str.startswith('VOI') | df['Value'].str.startswith('VUM') | df['Value'].str.startswith('VOC')
@@ -190,25 +180,6 @@ def GetVariants():
         mask = df['Value'] == 'Omicron (XBB+XBB.* excluding XBB.1.5, XBB.1.16, XBB.1.9.1, XBB.1.9.2, XBB.2.3)'
         df.loc[mask, 'Value'] = 'Omicron ' + '(XBB)'
 
-        # # Delete Former VOC Omicron GRA (B.1.1.529+BA.*) first detected in Botswana/Hong Kong/South Africa, as we already have lineages
-        # df = df[~(df['Value'] == 'Former VOC Omicron GRA (B.1.1.529+BA.*) first detected in Botswana/Hong Kong/South Africa')] 
-        
-        # #Grouping B.1.640 into Other group
-        # mask = df['Value'].str.contains('B.1.640', regex=False)
-        # df.loc[mask, 'Value'] = 'Other'
-
-        # # Extracting Omicron subvariants
-        # pattern = r'\((.*?)\+'
-        # mask = (df['Type'] == 'Variant') & df['Value'].str.contains(pattern, regex=True)
-        # df.loc[mask, 'Value'] = 'Omicron ' + '(' + df.loc[mask,'Value'].str.extract(pattern, expand=False) + ')'
-
-        # # Grouping by Country, Week prior to, and Value, and aggregating Submission Count, '% per Country and Week', and 'Total per Country and Week'
-        # df = df.groupby(['Country', 'Week prior to', 'Value']).agg({
-        # 'Submission Count': 'sum',
-        # '% per Country and Week': 'sum',
-        # 'Total per Country and Week': 'sum'
-        # }).reset_index()
-
         df.rename(columns={'Country':'country'},inplace=True)
         df.loc[df['country'] == 'USA', 'country'] = 'United States of America'
         df.loc[df['country'] == "Cote d'Ivoire", 'country'] = "Côte d'Ivoire"
@@ -218,7 +189,6 @@ def GetVariants():
         df.loc[df['country'] == "Bosnia and Herzegovina", 'country'] = 'Bosnia and Herz.'
         df.loc[df['country'] == "Central African Republic", 'country'] = 'Central African Rep.'
         df.loc[df['country'] == "Republic of the Congo", 'country'] = 'Congo'
-
 
         #Set working directory
         path0 = os.getcwd()
@@ -249,14 +219,18 @@ class ClimateDataProcessor:
         self.world = None
 
     def retrieve_climate_data(self):
-        # Data retrieval using CDS API
+        """
+        Retrieves climate data from the CDS API and saves it in netCDF format.
+        Args:
+        - grid_size: The grid size for the climate data.
+        """
 
         c = cdsapi.Client()
         year_months = {'2021': [str(i).zfill(2) for i in range(1,13)],
                        '2022': [str(i).zfill(2) for i in range(1,13)],
                        '2023': [str(i).zfill(2) for i in range(1,2)]
                       }
-
+        
         for year, months in year_months.items():
             for month in months:
                 for i, days in enumerate([list(range(1, 11)), list(range(11, 21)), list(range(21, 32))]):
@@ -286,31 +260,35 @@ class ClimateDataProcessor:
                                     '18:00', '19:00', '20:00',
                                     '21:00', '22:00', '23:00',
                                 ],
-
                             },
                             f'../data/climate/{year}_{month}_{i}_weather.nc')
 
     def filter_relevant_coordinates(self):
-    
+        """
+        Filters relevant coordinates and assigns regions to pairs of longitude and latitudes.
+        """
+        
+        # Load a sample netCDF file to get unique longitude and latitude values
         if not os.path.exists('../data/coords_region.csv'):
-            lon_lat = (xr.load_dataset('../data/climate/2023_01_0_weather.nc')
-                    .to_dataframe()
-                    .reset_index()
-                    [['longitude', 'latitude']]
-                    .drop_duplicates()
-                    .assign(longitude=lambda dd: dd.longitude.apply(lambda x: x if x < 180 else x - 360))
-                    )
+            lon_lat = (
+                xr.load_dataset('../data/climate/2022_01_0_weather.nc')
+                .to_dataframe()
+                .reset_index()
+                [['longitude', 'latitude']]
+                .drop_duplicates()
+                .assign(longitude=lambda dd: dd.longitude.apply(lambda x: x if x < 180 else x - 360))
+            )
+
+        # Load world map excluding Antarctica and fix specific ISO codes
         self.world = (gpd.read_file(gpd.datasets.get_path('naturalearth_lowres')) 
                 .rename(columns={'iso_a3': 'iso3', 'name': 'country'})
                 .loc[lambda dd:  ~dd.country.isin(['Antarctica'])]
                 )
-        # Extract the original geometry of France
+        
+        # Fix the geometry for France by excluding the first polygon
         original_geometry = self.world.loc[self.world['country'] == 'France', 'geometry'].values[0]
-
-        # Create a new MultiPolygon excluding the first polygon
         new_polygons = list(original_geometry.geoms)[1:]  # Extract all polygons except the first one
         new_multi_polygon = MultiPolygon(new_polygons)
-
         # Update the geometry of France in the world GeoDataFrame
         self.world.loc[self.world['country'] == 'France', 'geometry'] = new_multi_polygon
 
@@ -335,6 +313,10 @@ class ClimateDataProcessor:
         
 
     def compute_relative_absolute_humidity(self):
+        """
+        Computes relative and absolute humidity and saves the processed data.
+        """
+
         lon_lat_region = pd.read_csv('../data/coords_region.csv').merge(self.country_to_iso)
 
         # Compute relative and absolute humidity
@@ -370,90 +352,21 @@ class ClimateDataProcessor:
                 )
 
     def concat_data(self):
-        processed_path = "../data/climate/processed/"
+        """
+        Concatenates processed climate data files into a single DataFrame.
+        Returns:
+        - climate_df (DataFrame): Concatenated climate data.
+        - world (GeoDataFrame): World GeoDataFrame with country geometries.
+        - country_to_iso (DataFrame): DataFrame mapping countries to ISO3 codes.
+        """
+
+        processed_path = f"../data/climate/processed/"
         relevant_files = [f for f in os.listdir(processed_path)]
         climate_df = pd.concat([pd.read_pickle(f'{processed_path}{f}') for f in relevant_files])
         climate_df = climate_df.merge(self.country_to_iso,on='country')
         return climate_df, self.world, self.country_to_iso
 
    
-
-
-"""
------------------------------------------------------------------------------------------------
-------------------------------Socioeconomical Variables--------------------------------------------
------------------------------------------------------------------------------------------------
-
-"""
-import wbdata
-import pandas as pd
-
-def GetSocioEco():
-    # Check if the data file exists
-    if not os.path.exists('../data/worldbank/socioeconomical.csv'):
-        # Get country codes and names from the World Bank Repository
-        code_country_wb = wbdata.get_countries()
-        code_country_wb = pd.DataFrame(code_country_wb)[['id', 'name']]
-
-        # Get ISO3 country codes and names from OWID
-        covid_df = pd.read_csv('../data/owd/covid19_world.csv')
-        code_country_iso3 = covid_df[['iso3', 'country']].drop_duplicates()
-
-        # Merge ISO3 and ID from World Bank Repo
-        wb_to_iso3 = pd.merge(code_country_iso3, code_country_wb, left_on='iso3', right_on='id')
-
-        # Define the indicators to fetch
-        indicators = {
-            'EN.POP.DNST': 'Population density',
-            'NY.GDP.MKTP.CD': 'GDP',
-            "NY.GDP.PCAP.CD": "GDP per capita",
-            'NY.GDP.DEFL.KD.ZG': 'Inflation rate',
-            "SH.XPD.CHEX.PC.CD": 'Health expenditure per capita',
-            "SL.UEM.TOTL.NE.ZS": "Unemployment rate",
-            "SI.POV.DDAY": "Extreme poverty",
-            "SP.DYN.LE00.IN": "Life expectancy",
-            "SP.DYN.CDRT.IN": 'Crude death rate',
-            "SP.POP.65UP.TO.ZS": 'Population aged 65 and above',
-            'SH.PRV.SMOK': 'Tobacco use',
-            'SH.MED.BEDS.ZS': 'Hospital beds',
-            'IS.AIR.PSGR': 'Air Passengers',
-            'SE.SEC.CUAT.LO.ZS': 'Lower secondary',
-            'SE.PRM.ENRL.TC.ZS': 'Pupil-teacher ratio',
-            'SE.XPD.TOTL.GD.ZS': 'Education expenditure',
-            'SH.MED.NUMW.P3': 'Nurses and Midwives',
-            'SH.MED.PHYS.ZS': 'Physicians',
-            'SH.STA.DIAB.ZS': 'Diabetes prevalence'
-        }
-
-        # Fetch data
-        countries = wb_to_iso3['iso3']
-        dfa = wbdata.get_dataframe(indicators, country=countries, parse_dates=True)
-
-        # Filter data for the most recent year available for each country, considering the last 10 years
-        dfa_filtered = dfa.sort_index().loc(axis=0)[:, '2010-01-01':'2020-01-01'].groupby('country').fillna(method='bfill', limit=1).fillna(method='ffill')
-        dfa = dfa_filtered.loc(axis=0)[:, '2019-01-01'].reset_index(level='date').iloc[:, 1:]
-
-        # Merge with ISO3 country codes
-        socioeconomic = pd.merge(dfa, wb_to_iso3, left_on='country', right_on='name', how='left')
-        socioeconomic.drop(columns=['id', 'name'], inplace=True)
-        #socioeconomic.rename(columns={'country_y': 'country'}, inplace=True)
-
-        # Rearrange columns
-        socioeconomic = socioeconomic[socioeconomic.columns[-2:].tolist() + socioeconomic.columns[:-2].tolist()]
-
-        # Sum Nurses and Midwives with Physicians to create Health Personnel column
-        socioeconomic['Health personnel'] = socioeconomic['Nurses and Midwives'] + socioeconomic['Physicians']
-        socioeconomic.drop(columns=['Nurses and Midwives', 'Physicians'], inplace=True)
-
-        # Set working directory
-        data_directory = os.path.join(os.path.dirname(os.getcwd()), 'data', 'worldbank')
-
-        # Save CSV File
-        filename = os.path.join(data_directory, 'socioeconomical.csv')
-        socioeconomic.to_csv(filename, index=False)
-
-    
-
 """
 -----------------------------------------------------------------------------------------------
 ------------------------------Assign regions by latitude and longitude-------------------------
@@ -512,6 +425,9 @@ import numpy as np
 
 # How to calculate Absolute Humidity (https://github.com/atmos-python/atmos/issues/3)
 def calculate_absolute_humidity(t2m, msl, RH):
+    """
+    Computes the absolute humidity of the air given the temperature (t2m), mean sea level pressure (msl), and relative humidity (RH)
+    """
     es = 611.2*np.exp(17.67*(t2m-273.15)/(t2m-29.65))
     rvs = 0.622*es/(msl - es)
     rv = RH * rvs
