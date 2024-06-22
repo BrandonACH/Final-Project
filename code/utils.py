@@ -217,18 +217,24 @@ class ClimateDataProcessor:
     def __init__(self):
         self.country_to_iso = None
         self.world = None
+    
+    def _get_data_dir(self, grid_size):
+        """Return the directory path for the given grid size."""
+        return os.path.join('..', 'data', 'climate', f'grid_{grid_size[0]}')
 
-    def retrieve_climate_data(self):
+    def retrieve_climate_data(self, grid_size = [.5, .5]):
         """
         Retrieves climate data from the CDS API and saves it in netCDF format.
         Args:
         - grid_size: The grid size for the climate data.
         """
+        data_dir = self._get_data_dir(grid_size)
+        if not os.path.exists(data_dir):
+            os.makedirs(data_dir)
 
         c = cdsapi.Client()
-        year_months = {'2021': [str(i).zfill(2) for i in range(1,13)],
+        year_months = {'2021': [str(i).zfill(2) for i in range(12,13)],
                        '2022': [str(i).zfill(2) for i in range(1,13)],
-                       '2023': [str(i).zfill(2) for i in range(1,2)]
                       }
         
         for year, months in year_months.items():
@@ -240,7 +246,7 @@ class ClimateDataProcessor:
                             {
                                 'product_type': 'reanalysis',
                                 'format': 'netcdf', 
-                                'grid': [.5, .5],
+                                'grid': grid_size,
                                 'variable': [
                                     '2m_dewpoint_temperature',
                                     '2m_temperature',
@@ -260,18 +266,26 @@ class ClimateDataProcessor:
                                     '18:00', '19:00', '20:00',
                                     '21:00', '22:00', '23:00',
                                 ],
+                                'area': [
+                                    56, # Latitude North (max)
+                                    -10, # Longitude West (min)
+                                    36, # Latitude South (min)
+                                    18, # Longitude East (max)
+                                ]
                             },
-                            f'../data/climate/{year}_{month}_{i}_weather.nc')
+                            f'{data_dir}/{year}_{month}_{i}_weather.nc')
 
-    def filter_relevant_coordinates(self):
+    def filter_relevant_coordinates(self, grid_size=[.5, .5]):
         """
         Filters relevant coordinates and assigns regions to pairs of longitude and latitudes.
         """
+        data_dir = self._get_data_dir(grid_size)
+        sample_file = f'{data_dir}/2022_07_0_weather.nc'
         
         # Load a sample netCDF file to get unique longitude and latitude values
-        if not os.path.exists('../data/coords_region.csv'):
+        if not os.path.exists(f'../data/coords_region_{grid_size[0]}.csv'):
             lon_lat = (
-                xr.load_dataset('../data/climate/2022_01_0_weather.nc')
+                xr.load_dataset(sample_file)
                 .to_dataframe()
                 .reset_index()
                 [['longitude', 'latitude']]
@@ -299,7 +313,7 @@ class ClimateDataProcessor:
 
         # Assign regions to pairs of longitude and latitudes
         self.country_to_iso = self.world[['country', 'iso3']]
-        if not os.path.exists('../data/coords_region.csv'):
+        if not os.path.exists(f'../data/coords_region_{grid_size[0]}.csv'):
             lon_lat_region = (lon_lat
                             .drop_duplicates()
                             .assign(country=lambda dd: [region_assign(lon, lat, shape_df=self.world,
@@ -309,22 +323,27 @@ class ClimateDataProcessor:
                                                                 leave=False, total=dd.shape[0])])
                             .dropna()
             )
-            lon_lat_region.to_csv('../data/coords_region.csv', index=False)
+            lon_lat_region.to_csv(f'../data/coords_region_{grid_size[0]}.csv', index=False)
         
 
-    def compute_relative_absolute_humidity(self):
+    def compute_relative_absolute_humidity(self,  grid_size=[.5, .5]):
         """
         Computes relative and absolute humidity and saves the processed data.
         """
+        coords_path = f'../data/coords_region_{grid_size[0]}.csv'
+        lon_lat_region = pd.read_csv(coords_path).merge(self.country_to_iso)
 
-        lon_lat_region = pd.read_csv('../data/coords_region.csv').merge(self.country_to_iso)
+        data_dir = self._get_data_dir(grid_size)
+        processed_dir = f'{data_dir}/processed'
+        if not os.path.exists(processed_dir):
+            os.makedirs(processed_dir)
 
         # Compute relative and absolute humidity
-        nc_files = [f for f in os.listdir('../data/climate/') if f.endswith('.nc')]
+        nc_files = [f for f in os.listdir(data_dir) if f.endswith('.nc')]
 
         for file in tqdm(nc_files, leave=False, desc='Processing NC file'):
-            if not os.path.exists(f'../data/climate/processed/{file.split(".")[0]}.pickle'):
-                xr_file = xr.load_dataset(f'../data/climate/{file}')
+            if not os.path.exists(f'{processed_dir}/{file.split(".")[0]}.pickle'):
+                xr_file = xr.load_dataset(f'{data_dir}/{file}')
                 xr_file.d2m.attrs['units'] = 'degK'
                 xr_file.t2m.attrs['units'] = 'degK'
                 xr_file.msl.attrs['units'] = 'Pa'
@@ -348,10 +367,10 @@ class ClimateDataProcessor:
                                     'time': 'date'})
                     .assign(temperature=lambda dd: dd.temperature - 273.15)
                     [['date', 'latitude', 'longitude', 'country', 'temperature','absolute_humidity', 'relative_humidity', 'total_precipitation']]
-                    .to_pickle(f'../data/climate/processed/{file.split(".")[0]}.pickle')
+                    .to_pickle(f'{processed_dir}/{file.split(".")[0]}.pickle')
                 )
 
-    def concat_data(self):
+    def concat_data(self, grid_size=[.5, .5]):
         """
         Concatenates processed climate data files into a single DataFrame.
         Returns:
@@ -360,7 +379,7 @@ class ClimateDataProcessor:
         - country_to_iso (DataFrame): DataFrame mapping countries to ISO3 codes.
         """
 
-        processed_path = f"../data/climate/processed/"
+        processed_path = f'{self._get_data_dir(grid_size)}/processed/'
         relevant_files = [f for f in os.listdir(processed_path)]
         climate_df = pd.concat([pd.read_pickle(f'{processed_path}{f}') for f in relevant_files])
         climate_df = climate_df.merge(self.country_to_iso,on='country')
