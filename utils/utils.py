@@ -235,12 +235,13 @@ class ClimateDataProcessor:
         c = cdsapi.Client()
         year_months = {'2021': [str(i).zfill(2) for i in range(12,13)],
                        '2022': [str(i).zfill(2) for i in range(1,13)],
+                       '2023': [str(i).zfill(2) for i in range(1,2)],
                       }
         
         for year, months in year_months.items():
             for month in months:
                 for i, days in enumerate([list(range(1, 11)), list(range(11, 21)), list(range(21, 32))]):
-                    if not os.path.exists(f'../data/climate/{year}_{month}_{i}_weather.nc'):
+                    if not os.path.exists(f'../data/climate/grid_{grid_size[0]}/{year}_{month}_{i}_weather.nc'):
                         c.retrieve(
                             'reanalysis-era5-single-levels',
                             {
