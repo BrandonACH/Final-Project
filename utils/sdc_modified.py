@@ -510,6 +510,164 @@ class SDCAnalysis:
         return fig
 
     
+    
+    def combi_plotMOD(self, alpha: float = .05, xlabel: str = '', ylabel: str = '', title: str = None, max_r: float = None,
+                   date_fmt: str = '%m-%d', align: str = 'center', max_lag: int = np.inf, min_lag: int = -np.inf,
+                   labels_fontsize: int = 12, wspace: float = 1., hspace: float = 1., show_colorbar: bool = True,
+                   **kwargs):
+        # Setting up parameters
+        title = f'SDC plot (s = {self.fragment_size})' if title is None else title
+        align = align.lower()
+        if align not in ['left', 'center', 'right']:
+            warnings.warn(f'Alignment method "{align}" not recognized, defaulting to center alignment.')
+            align = 'center'
+        offset = self.fragment_size // 2 if align == 'center' else self.fragment_size
+        left_offset = 0 if align == 'left' else offset
+        right_offset = 0 if align == 'right' else offset
+
+        date_format = mdates.DateFormatter(date_fmt)
+        fig = plt.figure(**kwargs)
+        # We are organizing the grid in a 5 x 5 matrix so that (TT=Title, HM: Heatmap, TS1/TS2: Time-Series 1/2,
+        # MC: Max Correlations):
+        # TT TT TT TT TT
+        # NA TS1 TS1 NA NA
+        # TS2 HM HM MC2 CB
+        # TS2 HM HM MC2 CB
+        # NA MC1 MC1 NA NA
+        if min_lag < 0 < max_lag:
+            gs = fig.add_gridspec(5, 5, height_ratios=[.15, 1.5, 2, 2, 1.5], width_ratios=[1.5, 2, 2, 1, .2])
+        elif min_lag < 0:
+            gs = fig.add_gridspec(5, 4, height_ratios=[.15, 1.5, 2, 2, 1], width_ratios=[1.5, 2, 2, .3])
+        elif max_lag > 0:
+            gs = fig.add_gridspec(4, 5, height_ratios=[.15, 1.5, 2, 1], width_ratios=[1, 2, 2, 1, .2])
+        else:
+            raise ValueError('Range of lags to be considered should be bigger than 1')
+        # Time series 1
+        ts1 = fig.add_subplot(gs[1, 1:3])
+        ts1.plot(self.ts1, color='black')
+        # Time series 2
+        ts2 = fig.add_subplot(gs[2:4, 0])
+        plt.plot(self.ts2, self.ts2.reset_index()['date_2'], color='black')
+        # Heat map
+        hm = fig.add_subplot(gs[2:4, 1:3])
+
+        (self.sdc_df
+         .loc[lambda dd: (dd.lag <= max_lag) & (dd.lag >= min_lag)]
+         .pipe(lambda dd: sns.heatmap(dd.pivot(index='date_2', columns='date_1', values='r'), cbar=False,
+                                      mask=dd.pivot(index='date_2', columns='date_1', values='p_value') > alpha,
+                                      cmap=sns.diverging_palette(10, 220, sep=80, n=20), ax=hm))
+         )
+        # Add identity line to ease shift visualization
+        identity_len = min(len(self.ts1), len(self.ts2)) - self.fragment_size + 1
+        plt.plot(range(identity_len), range(identity_len), linestyle=':', color='black', alpha=.8)
+        # Correct and format ticks, labels, grids
+        # Hide Heatmap labels and ticks
+        hm.set_xlabel('')
+        hm.set_ylabel('')
+        plt.setp(hm.get_yticklabels(), visible=False)
+        plt.setp(hm.get_xticklabels(), visible=False)
+        # Each dot in the heatmap represents a `fragment_size` long region of the time-series, so we need to choose how
+        # to represent each dot because the heatmap axis are `fragment_size` shorter than the time-series axis.
+        # Alignment parameter comes then into play:
+        xmin, xmax = plt.xlim()
+        ymin, ymax = plt.ylim()
+        max_r = max_r if max_r is not None else self.sdc_df.r.abs().max()
+        hm.set_xlim(xmin - left_offset, xmax + right_offset)
+        hm.set_ylim(ymin + right_offset, ymax - left_offset)
+        trans_x = hm.get_xaxis_transform()
+        trans_y = hm.get_yaxis_transform()
+
+        hm.plot([-self.fragment_size / 2, self.fragment_size / 2], [1.0, 1.0],
+                color="k", transform=trans_x, clip_on=False, linewidth=5, solid_capstyle='butt')
+        hm.plot([0, 0], [-self.fragment_size / 2, self.fragment_size / 2],
+                color='k', transform=trans_y, clip_on=False, linewidth=5, solid_capstyle='butt')
+
+        hm.annotate(f'$s={self.fragment_size}$', xy=(self.fragment_size / 2 + 5, .99),
+                    xycoords=trans_x, size=9)
+
+        # Handle TS1 labels and ticks
+        ts1.xaxis.set_major_formatter(date_format)
+        ts1.set_xlim(self.ts1.index[0], self.ts1.index[-1])
+        ts1.xaxis.set_major_locator(ticker.MultipleLocator(len(self.ts1) / 2))
+        ts1.grid(True, which='major')
+        ts1.set_xlabel(xlabel, fontsize=labels_fontsize)
+        ts1.xaxis.set_label_position('top')
+
+        # Handle TS2 labels and ticks
+        ts2.yaxis.set_major_formatter(date_format)
+        ts2.set_ylim(self.ts2.index[0], self.ts2.index[-1])
+        ts2.yaxis.set_major_locator(ticker.MultipleLocator(len(self.ts2) / 2))
+        ts2.grid(True, which='major')
+        ts2.yaxis.tick_right()
+        ts2.invert_xaxis()
+        ts2.invert_yaxis()
+        ts2.set_ylabel(ylabel, fontsize=labels_fontsize)
+        plt.setp(ts2.get_yticklabels(), visible=True, rotation=90, va='center')
+        gs.update(wspace=wspace, hspace=hspace)
+
+        # Max Correlations
+        colors = {'Max $r$': '#3f7f93', 'Min $r$ (abs)': '#da3b46'}
+        if min_lag < 0:
+            mc1 = fig.add_subplot(gs[-1, 1:3])
+            (self.sdc_df
+             .loc[lambda dd: dd.p_value < alpha]
+             .loc[lambda dd: (dd.lag <= max_lag) & (dd.lag >= min_lag)]
+             .groupby('date_1')
+             .apply(lambda dd: dd.loc[dd['r'].abs() == dd['r'].abs().max()].loc[lambda d: d['lag'] == d['lag'].min()])
+             .reset_index(drop=True)
+             .groupby('date_1')
+             .agg(r_max=('r', lambda x: x.where(x > 0).max()), r_min=('r', lambda x: abs(x.where(x < 0).min())))
+             .rename(columns={'r_max': 'Max $r$', 'r_min': 'Min $r$ (abs)'})
+             .reset_index()
+             .melt('date_1')
+             .assign(date_1=lambda dd: dd.date_1 + pd.to_timedelta(f'{left_offset} days'))
+             .assign(color=lambda dd: dd.variable.apply(lambda x: colors[x]))
+             .plot.scatter(x='date_1', y='value', c='color', ax=mc1, style='-', alpha=1, colorbar=False, s=10)
+             )
+            mc1.xaxis.set_major_formatter(date_format)
+            plt.setp(mc1.get_xticklabels(), visible=True, rotation=45, ha='right')
+            mc1.set_xlabel('')
+            mc1.set_ylabel('Max abs($\\rho$)')
+            mc1.yaxis.set_label_position('right')
+            mc1.set_xlim(self.ts1.index[0], self.ts1.index[-1])
+            mc1.set_ylim(0, 1.05)
+            mc1.grid(True, which='major')
+            mc1.set_yticks([0, .5, 1])
+        if max_lag > 0:
+            mc2 = fig.add_subplot(gs[2:4, 3])
+            (self.sdc_df
+             .loc[lambda dd: dd.p_value < alpha]
+             .loc[lambda dd: (dd.lag <= max_lag) & (dd.lag >= min_lag)]
+             .groupby('date_2')
+             .agg(r_max=('r', lambda x: x.where(x > 0).max()), r_min=('r', lambda x: abs(x.where(x < 0).min())))
+             .rename(columns={'r_max': 'Max $r$', 'r_min': 'Min $r$ (abs)'})
+             .reset_index()
+             .melt('date_2')
+             .assign(date_2=lambda dd: dd.date_2 + pd.to_timedelta(f'{left_offset} days'))
+             .assign(color=lambda dd: dd.variable.apply(lambda x: colors[x]))
+             .plot.scatter(x='value', y='date_2', c='color', ax=mc2, style='o', alpha=.7, colorbar=False)
+             )
+            mc2.yaxis.set_major_formatter(date_format)
+            plt.setp(mc2.get_yticklabels(), visible=True, rotation=0)
+            mc2.set_xlabel('Max / Min $r$')
+            mc2.set_ylabel('')
+            mc2.grid(True, which='major')
+            mc2.set_xlim(1.05, 0)
+            mc2.set_ylim(self.ts2.index[-1], self.ts2.index[0])
+
+        # Colorbar
+        if show_colorbar:
+            cax = fig.add_subplot(gs[2:4, -1])
+        color_mesh = hm.get_children()[0]
+        color_mesh.set_clim(-max_r, max_r)
+        if show_colorbar:
+            fig.colorbar(color_mesh, cax=cax, label=f"{self.method.capitalize()}'s $\\rho$")
+        fig.suptitle(title)
+
+        return fig
+
+
+    
 
 
 

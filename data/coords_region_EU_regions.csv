@@ -1,38 +1,276 @@
 ,longitude,latitude,region
+1930,-8.25,54.5,Northern Ireland
+2370,-8.0,54.75,Northern Ireland
+2380,-8.0,54.5,Northern Ireland
+2390,-8.0,54.25,Northern Ireland
+2810,-7.75,54.75,Northern Ireland
+2820,-7.75,54.5,Northern Ireland
+2830,-7.75,54.25,Northern Ireland
+3240,-7.5,55.0,Northern Ireland
+3250,-7.5,54.75,Northern Ireland
+3260,-7.5,54.5,Northern Ireland
+3270,-7.5,54.25,Northern Ireland
+3680,-7.25,55.0,Northern Ireland
+3690,-7.25,54.75,Northern Ireland
+3700,-7.25,54.5,Northern Ireland
+3710,-7.25,54.25,Northern Ireland
+3720,-7.25,54.0,Northern Ireland
+4090,-7.0,55.25,Northern Ireland
+4100,-7.0,55.0,Northern Ireland
+4110,-7.0,54.75,Northern Ireland
+4120,-7.0,54.5,Northern Ireland
+4130,-7.0,54.25,Northern Ireland
+4520,-6.75,55.25,Northern Ireland
+4530,-6.75,55.0,Northern Ireland
+4540,-6.75,54.75,Northern Ireland
+4550,-6.75,54.5,Northern Ireland
+4560,-6.75,54.25,Northern Ireland
+4570,-6.75,54.0,Northern Ireland
+4950,-6.5,55.25,Northern Ireland
+4960,-6.5,55.0,Northern Ireland
+4970,-6.5,54.75,Northern Ireland
+4980,-6.5,54.5,Northern Ireland
+4990,-6.5,54.25,Northern Ireland
+5000,-6.5,54.0,Northern Ireland
+5390,-6.25,55.25,Northern Ireland
+5400,-6.25,55.0,Northern Ireland
+5410,-6.25,54.75,Northern Ireland
+5420,-6.25,54.5,Northern Ireland
+5430,-6.25,54.25,Northern Ireland
+5440,-6.25,54.0,Northern Ireland
+5830,-6.0,55.0,Northern Ireland
+5840,-6.0,54.75,Northern Ireland
+5850,-6.0,54.5,Northern Ireland
+5860,-6.0,54.25,Northern Ireland
+5870,-6.0,54.0,Northern Ireland
+6270,-5.75,56.0,Highlands and Islands
+6280,-5.75,55.75,Highlands and Islands
+6290,-5.75,55.5,Highlands and Islands
+6300,-5.75,55.25,Highlands and Islands
+6310,-5.75,54.75,Northern Ireland
+6320,-5.75,54.5,Northern Ireland
+6330,-5.75,54.25,Northern Ireland
+6360,-5.75,50.25,Cornwall and Isles of Scilly
+6370,-5.75,50.0,Cornwall and Isles of Scilly
+6700,-5.5,56.0,Highlands and Islands
+6710,-5.5,55.75,Highlands and Islands
+6720,-5.5,55.5,Highlands and Islands
+6730,-5.5,55.25,Highlands and Islands
+6740,-5.5,54.75,Northern Ireland
+6750,-5.5,54.5,Northern Ireland
+6760,-5.5,54.25,Northern Ireland
+6810,-5.5,50.25,Cornwall and Isles of Scilly
+6820,-5.5,50.0,Cornwall and Isles of Scilly
+7160,-5.25,56.0,Highlands and Islands
+7170,-5.25,55.75,Highlands and Islands
+7180,-5.25,55.5,Highlands and Islands
+7200,-5.25,55.0,Southern Scotland
+7210,-5.25,54.75,Southern Scotland
+7230,-5.25,52.0,West Wales and The Valleys
+7240,-5.25,51.75,West Wales and The Valleys
+7270,-5.25,50.5,Cornwall and Isles of Scilly
+7280,-5.25,50.25,Cornwall and Isles of Scilly
+7290,-5.25,50.0,Cornwall and Isles of Scilly
+7630,-5.0,56.0,Highlands and Islands
+7640,-5.0,55.75,Highlands and Islands
+7650,-5.0,55.5,Highlands and Islands
+7660,-5.0,55.25,Southern Scotland
+7670,-5.0,55.0,Southern Scotland
+7680,-5.0,54.75,Southern Scotland
+7720,-5.0,52.0,West Wales and The Valleys
+7730,-5.0,51.75,West Wales and The Valleys
+7740,-5.0,51.5,West Wales and The Valleys
+7770,-5.0,50.5,Cornwall and Isles of Scilly
+7780,-5.0,50.25,Cornwall and Isles of Scilly
+7790,-5.0,50.0,Cornwall and Isles of Scilly
+8130,-4.75,56.0,West Central Scotland
+8140,-4.75,55.75,Southern Scotland
+8150,-4.75,55.5,Southern Scotland
+8160,-4.75,55.25,Southern Scotland
+8170,-4.75,55.0,Southern Scotland
+8180,-4.75,54.75,Southern Scotland
+8210,-4.75,53.25,West Wales and The Valleys
+8220,-4.75,53.0,West Wales and The Valleys
+8230,-4.75,52.75,West Wales and The Valleys
+8250,-4.75,52.25,West Wales and The Valleys
+8260,-4.75,52.0,West Wales and The Valleys
+8270,-4.75,51.75,West Wales and The Valleys
+8310,-4.75,50.75,Cornwall and Isles of Scilly
+8320,-4.75,50.5,Cornwall and Isles of Scilly
+8330,-4.75,50.25,Cornwall and Isles of Scilly
 8360,-4.75,48.5,Bretagne
 8370,-4.75,48.25,Bretagne
+8700,-4.5,56.0,West Central Scotland
+8710,-4.5,55.75,Southern Scotland
+8720,-4.5,55.5,Southern Scotland
+8730,-4.5,55.25,Southern Scotland
+8740,-4.5,55.0,Southern Scotland
+8750,-4.5,54.75,Southern Scotland
+8770,-4.5,53.5,West Wales and The Valleys
+8780,-4.5,53.25,West Wales and The Valleys
+8790,-4.5,53.0,West Wales and The Valleys
+8800,-4.5,52.75,West Wales and The Valleys
+8820,-4.5,52.25,West Wales and The Valleys
+8830,-4.5,52.0,West Wales and The Valleys
+8840,-4.5,51.75,West Wales and The Valleys
+8870,-4.5,51.0,Devon
+8880,-4.5,50.75,Cornwall and Isles of Scilly
+8890,-4.5,50.5,Cornwall and Isles of Scilly
+8900,-4.5,50.25,Cornwall and Isles of Scilly
 8920,-4.5,48.75,Bretagne
 8930,-4.5,48.5,Bretagne
 8940,-4.5,48.25,Bretagne
 8950,-4.5,48.0,Bretagne
 8960,-4.5,47.75,Bretagne
+9270,-4.25,56.0,Eastern Scotland
+9280,-4.25,55.75,Southern Scotland
+9290,-4.25,55.5,Southern Scotland
+9300,-4.25,55.25,Southern Scotland
+9310,-4.25,55.0,Southern Scotland
+9320,-4.25,54.75,Southern Scotland
+9340,-4.25,53.5,West Wales and The Valleys
+9350,-4.25,53.25,West Wales and The Valleys
+9360,-4.25,53.0,West Wales and The Valleys
+9370,-4.25,52.75,West Wales and The Valleys
+9390,-4.25,52.25,West Wales and The Valleys
+9400,-4.25,52.0,West Wales and The Valleys
+9410,-4.25,51.75,West Wales and The Valleys
+9420,-4.25,51.5,West Wales and The Valleys
+9430,-4.25,51.25,Devon
+9440,-4.25,51.0,Devon
+9450,-4.25,50.75,Devon
+9460,-4.25,50.5,Cornwall and Isles of Scilly
+9470,-4.25,50.25,Cornwall and Isles of Scilly
 9490,-4.25,48.75,Bretagne
 9500,-4.25,48.5,Bretagne
 9510,-4.25,48.25,Bretagne
 9520,-4.25,48.0,Bretagne
 9530,-4.25,47.75,Bretagne
+9830,-4.0,56.0,Eastern Scotland
+9840,-4.0,55.75,Southern Scotland
+9850,-4.0,55.5,Southern Scotland
+9860,-4.0,55.25,Southern Scotland
+9870,-4.0,55.0,Southern Scotland
+9880,-4.0,54.75,Southern Scotland
+9910,-4.0,53.25,West Wales and The Valleys
+9920,-4.0,53.0,West Wales and The Valleys
+9930,-4.0,52.75,West Wales and The Valleys
+9940,-4.0,52.5,West Wales and The Valleys
+9950,-4.0,52.25,West Wales and The Valleys
+9960,-4.0,52.0,West Wales and The Valleys
+9970,-4.0,51.75,West Wales and The Valleys
+9980,-4.0,51.5,West Wales and The Valleys
+9990,-4.0,51.25,Devon
+10000,-4.0,51.0,Devon
+10010,-4.0,50.75,Devon
+10020,-4.0,50.5,Devon
+10030,-4.0,50.25,Devon
 10060,-4.0,48.75,Bretagne
 10070,-4.0,48.5,Bretagne
 10080,-4.0,48.25,Bretagne
 10090,-4.0,48.0,Bretagne
 10100,-4.0,47.75,Bretagne
+10400,-3.75,56.0,Eastern Scotland
+10410,-3.75,55.75,Southern Scotland
+10420,-3.75,55.5,Southern Scotland
+10430,-3.75,55.25,Southern Scotland
+10440,-3.75,55.0,Southern Scotland
+10450,-3.75,54.75,Southern Scotland
+10490,-3.75,53.25,West Wales and The Valleys
+10500,-3.75,53.0,West Wales and The Valleys
+10510,-3.75,52.75,West Wales and The Valleys
+10520,-3.75,52.5,East Wales
+10530,-3.75,52.25,West Wales and The Valleys
+10540,-3.75,52.0,West Wales and The Valleys
+10550,-3.75,51.75,West Wales and The Valleys
+10560,-3.75,51.5,West Wales and The Valleys
+10570,-3.75,51.25,Dorset and Somerset
+10580,-3.75,51.0,Devon
+10590,-3.75,50.75,Devon
+10600,-3.75,50.5,Devon
+10610,-3.75,50.25,Devon
 10640,-3.75,48.75,Bretagne
 10650,-3.75,48.5,Bretagne
 10660,-3.75,48.25,Bretagne
 10670,-3.75,48.0,Bretagne
 10680,-3.75,47.75,Bretagne
+10990,-3.5,56.0,Eastern Scotland
+11000,-3.5,55.75,Southern Scotland
+11010,-3.5,55.5,Southern Scotland
+11020,-3.5,55.25,Southern Scotland
+11030,-3.5,55.0,Southern Scotland
+11040,-3.5,54.75,Cumbria
+11050,-3.5,54.5,Cumbria
+11060,-3.5,54.25,Cumbria
+11080,-3.5,53.25,West Wales and The Valleys
+11090,-3.5,53.0,West Wales and The Valleys
+11100,-3.5,52.75,East Wales
+11110,-3.5,52.5,East Wales
+11120,-3.5,52.25,East Wales
+11130,-3.5,52.0,East Wales
+11140,-3.5,51.75,West Wales and The Valleys
+11150,-3.5,51.5,West Wales and The Valleys
+11160,-3.5,51.25,Dorset and Somerset
+11170,-3.5,51.0,Devon
+11180,-3.5,50.75,Devon
+11190,-3.5,50.5,Devon
+11200,-3.5,50.25,Devon
 11230,-3.5,48.75,Bretagne
 11240,-3.5,48.5,Bretagne
 11250,-3.5,48.25,Bretagne
 11260,-3.5,48.0,Bretagne
 11270,-3.5,47.75,Bretagne
 11280,-3.5,47.5,Bretagne
+11580,-3.25,56.0,Eastern Scotland
+11590,-3.25,55.75,Southern Scotland
+11600,-3.25,55.5,Southern Scotland
+11610,-3.25,55.25,Southern Scotland
+11620,-3.25,55.0,Southern Scotland
+11630,-3.25,54.75,Cumbria
+11640,-3.25,54.5,Cumbria
+11650,-3.25,54.25,Cumbria
+11660,-3.25,54.0,Cumbria
+11680,-3.25,53.5,Merseyside
+11690,-3.25,53.25,East Wales
+11700,-3.25,53.0,West Wales and The Valleys
+11710,-3.25,52.75,East Wales
+11720,-3.25,52.5,East Wales
+11730,-3.25,52.25,East Wales
+11740,-3.25,52.0,East Wales
+11750,-3.25,51.75,West Wales and The Valleys
+11760,-3.25,51.5,East Wales
+11770,-3.25,51.25,Dorset and Somerset
+11780,-3.25,51.0,Dorset and Somerset
+11790,-3.25,50.75,Devon
+11800,-3.25,50.5,Devon
 11830,-3.25,48.75,Bretagne
 11840,-3.25,48.5,Bretagne
 11850,-3.25,48.25,Bretagne
 11860,-3.25,48.0,Bretagne
 11870,-3.25,47.75,Bretagne
 11880,-3.25,47.5,Bretagne
+12180,-3.0,56.0,Eastern Scotland
+12190,-3.0,55.75,Southern Scotland
+12200,-3.0,55.5,Southern Scotland
+12210,-3.0,55.25,Southern Scotland
+12220,-3.0,55.0,Cumbria
+12230,-3.0,54.75,Cumbria
+12240,-3.0,54.5,Cumbria
+12250,-3.0,54.25,Cumbria
+12260,-3.0,54.0,Lancashire
+12270,-3.0,53.75,Lancashire
+12280,-3.0,53.5,Merseyside
+12290,-3.0,53.25,Cheshire
+12300,-3.0,53.0,East Wales
+12310,-3.0,52.75,Shropshire and Staffordshire
+12320,-3.0,52.5,Shropshire and Staffordshire
+12330,-3.0,52.25,"Herefordshire, Worcestershire and Warwickshire"
+12340,-3.0,52.0,"Herefordshire, Worcestershire and Warwickshire"
+12350,-3.0,51.75,East Wales
+12360,-3.0,51.5,East Wales
+12370,-3.0,51.25,Dorset and Somerset
+12380,-3.0,51.0,Dorset and Somerset
+12390,-3.0,50.75,Devon
 12430,-3.0,48.75,Bretagne
 12440,-3.0,48.5,Bretagne
 12450,-3.0,48.25,Bretagne
@@ -40,12 +278,57 @@
 12470,-3.0,47.75,Bretagne
 12480,-3.0,47.5,Bretagne
 12490,-3.0,47.25,Bretagne
+12790,-2.75,56.0,Eastern Scotland
+12800,-2.75,55.75,Southern Scotland
+12810,-2.75,55.5,Southern Scotland
+12820,-2.75,55.25,Southern Scotland
+12830,-2.75,55.0,Cumbria
+12840,-2.75,54.75,Cumbria
+12850,-2.75,54.5,Cumbria
+12860,-2.75,54.25,Cumbria
+12870,-2.75,54.0,Lancashire
+12880,-2.75,53.75,Lancashire
+12890,-2.75,53.5,Merseyside
+12900,-2.75,53.25,Cheshire
+12910,-2.75,53.0,Cheshire
+12920,-2.75,52.75,Shropshire and Staffordshire
+12930,-2.75,52.5,Shropshire and Staffordshire
+12940,-2.75,52.25,"Herefordshire, Worcestershire and Warwickshire"
+12950,-2.75,52.0,"Herefordshire, Worcestershire and Warwickshire"
+12960,-2.75,51.75,East Wales
+12970,-2.75,51.5,"Gloucestershire, Wiltshire and Bristol/Bath area"
+12980,-2.75,51.25,Dorset and Somerset
+12990,-2.75,51.0,Dorset and Somerset
+13000,-2.75,50.75,Dorset and Somerset
 13030,-2.75,48.75,Bretagne
 13040,-2.75,48.5,Bretagne
 13050,-2.75,48.25,Bretagne
 13060,-2.75,48.0,Bretagne
 13070,-2.75,47.75,Bretagne
 13080,-2.75,47.5,Bretagne
+13390,-2.5,56.0,Eastern Scotland
+13400,-2.5,55.75,Southern Scotland
+13410,-2.5,55.5,Southern Scotland
+13420,-2.5,55.25,Northumberland and Tyne and Wear
+13430,-2.5,55.0,Northumberland and Tyne and Wear
+13440,-2.5,54.75,Cumbria
+13450,-2.5,54.5,Cumbria
+13460,-2.5,54.25,Cumbria
+13470,-2.5,54.0,Lancashire
+13480,-2.5,53.75,Lancashire
+13490,-2.5,53.5,Greater Manchester
+13500,-2.5,53.25,Cheshire
+13510,-2.5,53.0,Cheshire
+13520,-2.5,52.75,Shropshire and Staffordshire
+13530,-2.5,52.5,Shropshire and Staffordshire
+13540,-2.5,52.25,"Herefordshire, Worcestershire and Warwickshire"
+13550,-2.5,52.0,"Herefordshire, Worcestershire and Warwickshire"
+13560,-2.5,51.75,"Gloucestershire, Wiltshire and Bristol/Bath area"
+13570,-2.5,51.5,"Gloucestershire, Wiltshire and Bristol/Bath area"
+13580,-2.5,51.25,Dorset and Somerset
+13590,-2.5,51.0,Dorset and Somerset
+13600,-2.5,50.75,Dorset and Somerset
+13610,-2.5,50.5,Dorset and Somerset
 13630,-2.5,48.75,Bretagne
 13640,-2.5,48.5,Bretagne
 13650,-2.5,48.25,Bretagne
@@ -53,6 +336,29 @@
 13670,-2.5,47.75,Bretagne
 13680,-2.5,47.5,Bretagne
 13690,-2.5,47.25,Pays de la Loire
+14000,-2.25,56.0,Southern Scotland
+14010,-2.25,55.75,Southern Scotland
+14020,-2.25,55.5,Northumberland and Tyne and Wear
+14030,-2.25,55.25,Northumberland and Tyne and Wear
+14040,-2.25,55.0,Northumberland and Tyne and Wear
+14050,-2.25,54.75,Tees Valley and Durham
+14060,-2.25,54.5,Cumbria
+14070,-2.25,54.25,North Yorkshire
+14080,-2.25,54.0,North Yorkshire
+14090,-2.25,53.75,Lancashire
+14100,-2.25,53.5,Greater Manchester
+14110,-2.25,53.25,Cheshire
+14120,-2.25,53.0,Shropshire and Staffordshire
+14130,-2.25,52.75,Shropshire and Staffordshire
+14140,-2.25,52.5,Shropshire and Staffordshire
+14150,-2.25,52.25,"Herefordshire, Worcestershire and Warwickshire"
+14160,-2.25,52.0,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14170,-2.25,51.75,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14180,-2.25,51.5,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14190,-2.25,51.25,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14200,-2.25,51.0,Dorset and Somerset
+14210,-2.25,50.75,Dorset and Somerset
+14220,-2.25,50.5,Dorset and Somerset
 14240,-2.25,48.75,Bretagne
 14250,-2.25,48.5,Bretagne
 14260,-2.25,48.25,Bretagne
@@ -62,6 +368,29 @@
 14300,-2.25,47.25,Pays de la Loire
 14310,-2.25,47.0,Pays de la Loire
 14320,-2.25,46.75,Pays de la Loire
+14620,-2.0,56.0,Southern Scotland
+14630,-2.0,55.75,Northumberland and Tyne and Wear
+14640,-2.0,55.5,Northumberland and Tyne and Wear
+14650,-2.0,55.25,Northumberland and Tyne and Wear
+14660,-2.0,55.0,Northumberland and Tyne and Wear
+14670,-2.0,54.75,Tees Valley and Durham
+14680,-2.0,54.5,Tees Valley and Durham
+14690,-2.0,54.25,North Yorkshire
+14700,-2.0,54.0,North Yorkshire
+14710,-2.0,53.75,West Yorkshire
+14720,-2.0,53.5,Greater Manchester
+14730,-2.0,53.25,Derbyshire and Nottinghamshire
+14740,-2.0,53.0,Shropshire and Staffordshire
+14750,-2.0,52.75,Shropshire and Staffordshire
+14760,-2.0,52.5,West Midlands
+14770,-2.0,52.25,"Herefordshire, Worcestershire and Warwickshire"
+14780,-2.0,52.0,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14790,-2.0,51.75,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14800,-2.0,51.5,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14810,-2.0,51.25,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14820,-2.0,51.0,"Gloucestershire, Wiltshire and Bristol/Bath area"
+14830,-2.0,50.75,Dorset and Somerset
+14840,-2.0,50.5,Dorset and Somerset
 14860,-2.0,49.75,Normandie
 14870,-2.0,49.5,Normandie
 14900,-2.0,48.75,Bretagne
@@ -74,6 +403,27 @@
 14970,-2.0,47.0,Pays de la Loire
 14980,-2.0,46.75,Pays de la Loire
 14990,-2.0,46.5,Pays de la Loire
+15310,-1.75,55.75,Northumberland and Tyne and Wear
+15320,-1.75,55.5,Northumberland and Tyne and Wear
+15330,-1.75,55.25,Northumberland and Tyne and Wear
+15340,-1.75,55.0,Northumberland and Tyne and Wear
+15350,-1.75,54.75,Tees Valley and Durham
+15360,-1.75,54.5,North Yorkshire
+15370,-1.75,54.25,North Yorkshire
+15380,-1.75,54.0,North Yorkshire
+15390,-1.75,53.75,West Yorkshire
+15400,-1.75,53.5,South Yorkshire
+15410,-1.75,53.25,Derbyshire and Nottinghamshire
+15420,-1.75,53.0,Derbyshire and Nottinghamshire
+15430,-1.75,52.75,Shropshire and Staffordshire
+15440,-1.75,52.5,West Midlands
+15450,-1.75,52.25,"Herefordshire, Worcestershire and Warwickshire"
+15460,-1.75,52.0,"Gloucestershire, Wiltshire and Bristol/Bath area"
+15470,-1.75,51.75,"Gloucestershire, Wiltshire and Bristol/Bath area"
+15480,-1.75,51.5,"Gloucestershire, Wiltshire and Bristol/Bath area"
+15490,-1.75,51.25,"Gloucestershire, Wiltshire and Bristol/Bath area"
+15500,-1.75,51.0,"Gloucestershire, Wiltshire and Bristol/Bath area"
+15510,-1.75,50.75,Hampshire and Isle of Wight
 15540,-1.75,49.75,Normandie
 15550,-1.75,49.5,Normandie
 15560,-1.75,49.25,Normandie
@@ -89,6 +439,27 @@
 15670,-1.75,46.5,Pays de la Loire
 15710,-1.75,43.5,Nouvelle-Aquitaine
 15720,-1.75,43.25,Nouvelle-Aquitaine
+15990,-1.5,55.5,Northumberland and Tyne and Wear
+16000,-1.5,55.25,Northumberland and Tyne and Wear
+16010,-1.5,55.0,Northumberland and Tyne and Wear
+16020,-1.5,54.75,Tees Valley and Durham
+16030,-1.5,54.5,Tees Valley and Durham
+16040,-1.5,54.25,North Yorkshire
+16050,-1.5,54.0,North Yorkshire
+16060,-1.5,53.75,West Yorkshire
+16070,-1.5,53.5,South Yorkshire
+16080,-1.5,53.25,Derbyshire and Nottinghamshire
+16090,-1.5,53.0,Derbyshire and Nottinghamshire
+16100,-1.5,52.75,"Leicestershire, Rutland and Northamptonshire"
+16110,-1.5,52.5,"Herefordshire, Worcestershire and Warwickshire"
+16120,-1.5,52.25,"Herefordshire, Worcestershire and Warwickshire"
+16130,-1.5,52.0,"Berkshire, Buckinghamshire and Oxfordshire"
+16140,-1.5,51.75,"Berkshire, Buckinghamshire and Oxfordshire"
+16150,-1.5,51.5,"Berkshire, Buckinghamshire and Oxfordshire"
+16160,-1.5,51.25,Hampshire and Isle of Wight
+16170,-1.5,51.0,Hampshire and Isle of Wight
+16180,-1.5,50.75,Hampshire and Isle of Wight
+16190,-1.5,50.5,Hampshire and Isle of Wight
 16200,-1.5,49.75,Normandie
 16210,-1.5,49.5,Normandie
 16220,-1.5,49.25,Normandie
@@ -110,6 +481,25 @@
 16440,-1.5,43.5,Nouvelle-Aquitaine
 16450,-1.5,43.25,Nouvelle-Aquitaine
 16460,-1.5,43.0,Nouvelle-Aquitaine
+16720,-1.25,55.0,Northumberland and Tyne and Wear
+16730,-1.25,54.75,Tees Valley and Durham
+16740,-1.25,54.5,Tees Valley and Durham
+16750,-1.25,54.25,North Yorkshire
+16760,-1.25,54.0,North Yorkshire
+16770,-1.25,53.75,North Yorkshire
+16780,-1.25,53.5,South Yorkshire
+16790,-1.25,53.25,Derbyshire and Nottinghamshire
+16800,-1.25,53.0,Derbyshire and Nottinghamshire
+16810,-1.25,52.75,"Leicestershire, Rutland and Northamptonshire"
+16820,-1.25,52.5,"Leicestershire, Rutland and Northamptonshire"
+16830,-1.25,52.25,"Leicestershire, Rutland and Northamptonshire"
+16840,-1.25,52.0,"Berkshire, Buckinghamshire and Oxfordshire"
+16850,-1.25,51.75,"Berkshire, Buckinghamshire and Oxfordshire"
+16860,-1.25,51.5,"Berkshire, Buckinghamshire and Oxfordshire"
+16870,-1.25,51.25,Hampshire and Isle of Wight
+16880,-1.25,51.0,Hampshire and Isle of Wight
+16890,-1.25,50.75,Hampshire and Isle of Wight
+16900,-1.25,50.5,Hampshire and Isle of Wight
 16910,-1.25,49.75,Normandie
 16920,-1.25,49.5,Normandie
 16930,-1.25,49.25,Normandie
@@ -138,6 +528,23 @@
 17160,-1.25,43.5,Nouvelle-Aquitaine
 17170,-1.25,43.25,Nouvelle-Aquitaine
 17180,-1.25,43.0,Nouvelle-Aquitaine
+17430,-1.0,54.75,Tees Valley and Durham
+17440,-1.0,54.5,North Yorkshire
+17450,-1.0,54.25,North Yorkshire
+17460,-1.0,54.0,North Yorkshire
+17470,-1.0,53.75,North Yorkshire
+17480,-1.0,53.5,South Yorkshire
+17490,-1.0,53.25,Derbyshire and Nottinghamshire
+17500,-1.0,53.0,Derbyshire and Nottinghamshire
+17510,-1.0,52.75,"Leicestershire, Rutland and Northamptonshire"
+17520,-1.0,52.5,"Leicestershire, Rutland and Northamptonshire"
+17530,-1.0,52.25,"Leicestershire, Rutland and Northamptonshire"
+17540,-1.0,52.0,"Berkshire, Buckinghamshire and Oxfordshire"
+17550,-1.0,51.75,"Berkshire, Buckinghamshire and Oxfordshire"
+17560,-1.0,51.5,"Berkshire, Buckinghamshire and Oxfordshire"
+17570,-1.0,51.25,Hampshire and Isle of Wight
+17580,-1.0,51.0,Hampshire and Isle of Wight
+17590,-1.0,50.75,Hampshire and Isle of Wight
 17610,-1.0,49.5,Normandie
 17620,-1.0,49.25,Normandie
 17630,-1.0,49.0,Normandie
@@ -165,6 +572,22 @@
 17850,-1.0,43.5,Nouvelle-Aquitaine
 17860,-1.0,43.25,Nouvelle-Aquitaine
 17870,-1.0,43.0,Nouvelle-Aquitaine
+18130,-0.75,54.5,North Yorkshire
+18140,-0.75,54.25,North Yorkshire
+18150,-0.75,54.0,East Yorkshire and Northern Lincolnshire
+18160,-0.75,53.75,East Yorkshire and Northern Lincolnshire
+18170,-0.75,53.5,East Yorkshire and Northern Lincolnshire
+18180,-0.75,53.25,Derbyshire and Nottinghamshire
+18190,-0.75,53.0,Lincolnshire
+18200,-0.75,52.75,"Leicestershire, Rutland and Northamptonshire"
+18210,-0.75,52.5,"Leicestershire, Rutland and Northamptonshire"
+18220,-0.75,52.25,"Leicestershire, Rutland and Northamptonshire"
+18230,-0.75,52.0,"Berkshire, Buckinghamshire and Oxfordshire"
+18240,-0.75,51.75,"Berkshire, Buckinghamshire and Oxfordshire"
+18250,-0.75,51.5,"Berkshire, Buckinghamshire and Oxfordshire"
+18260,-0.75,51.25,"Surrey, East and West Sussex"
+18270,-0.75,51.0,"Surrey, East and West Sussex"
+18280,-0.75,50.75,"Surrey, East and West Sussex"
 18320,-0.75,49.25,Normandie
 18330,-0.75,49.0,Normandie
 18340,-0.75,48.75,Normandie
@@ -192,6 +615,22 @@
 18560,-0.75,43.25,Nouvelle-Aquitaine
 18570,-0.75,43.0,Nouvelle-Aquitaine
 18580,-0.75,42.75,Nouvelle-Aquitaine
+18820,-0.5,54.5,North Yorkshire
+18830,-0.5,54.25,North Yorkshire
+18840,-0.5,54.0,East Yorkshire and Northern Lincolnshire
+18850,-0.5,53.75,East Yorkshire and Northern Lincolnshire
+18860,-0.5,53.5,East Yorkshire and Northern Lincolnshire
+18870,-0.5,53.25,Lincolnshire
+18880,-0.5,53.0,Lincolnshire
+18890,-0.5,52.75,Lincolnshire
+18900,-0.5,52.5,"Leicestershire, Rutland and Northamptonshire"
+18910,-0.5,52.25,Bedfordshire and Hertfordshire
+18920,-0.5,52.0,Bedfordshire and Hertfordshire
+18930,-0.5,51.75,Bedfordshire and Hertfordshire
+18940,-0.5,51.5,"Berkshire, Buckinghamshire and Oxfordshire"
+18950,-0.5,51.25,"Surrey, East and West Sussex"
+18960,-0.5,51.0,"Surrey, East and West Sussex"
+18970,-0.5,50.75,"Surrey, East and West Sussex"
 19000,-0.5,49.25,Normandie
 19010,-0.5,49.0,Normandie
 19020,-0.5,48.75,Normandie
@@ -219,6 +658,21 @@
 19240,-0.5,43.25,Nouvelle-Aquitaine
 19250,-0.5,43.0,Nouvelle-Aquitaine
 19260,-0.5,42.75,Nouvelle-Aquitaine
+19500,-0.25,54.25,North Yorkshire
+19510,-0.25,54.0,East Yorkshire and Northern Lincolnshire
+19520,-0.25,53.75,East Yorkshire and Northern Lincolnshire
+19530,-0.25,53.5,Lincolnshire
+19540,-0.25,53.25,Lincolnshire
+19550,-0.25,53.0,Lincolnshire
+19560,-0.25,52.75,Lincolnshire
+19570,-0.25,52.5,East Anglia
+19580,-0.25,52.25,East Anglia
+19590,-0.25,52.0,Bedfordshire and Hertfordshire
+19600,-0.25,51.75,Bedfordshire and Hertfordshire
+19610,-0.25,51.5,Outer London — West and North West
+19620,-0.25,51.25,"Surrey, East and West Sussex"
+19630,-0.25,51.0,"Surrey, East and West Sussex"
+19640,-0.25,50.75,"Surrey, East and West Sussex"
 19670,-0.25,49.25,Normandie
 19680,-0.25,49.0,Normandie
 19690,-0.25,48.75,Normandie
@@ -246,6 +700,20 @@
 19910,-0.25,43.25,Nouvelle-Aquitaine
 19920,-0.25,43.0,Occitanie
 19930,-0.25,42.75,Occitanie
+20150,0.0,54.0,East Yorkshire and Northern Lincolnshire
+20160,0.0,53.75,East Yorkshire and Northern Lincolnshire
+20170,0.0,53.5,Lincolnshire
+20180,0.0,53.25,Lincolnshire
+20190,0.0,53.0,Lincolnshire
+20200,0.0,52.75,Lincolnshire
+20210,0.0,52.5,East Anglia
+20220,0.0,52.25,East Anglia
+20230,0.0,52.0,Bedfordshire and Hertfordshire
+20240,0.0,51.75,Bedfordshire and Hertfordshire
+20250,0.0,51.5,Outer London — East and North East
+20260,0.0,51.25,"Surrey, East and West Sussex"
+20270,0.0,51.0,"Surrey, East and West Sussex"
+20280,0.0,50.75,"Surrey, East and West Sussex"
 20310,0.0,49.5,Normandie
 20320,0.0,49.25,Normandie
 20330,0.0,49.0,Normandie
@@ -274,6 +742,18 @@
 20560,0.0,43.25,Occitanie
 20570,0.0,43.0,Occitanie
 20580,0.0,42.75,Occitanie
+20800,0.25,53.5,Lincolnshire
+20810,0.25,53.25,Lincolnshire
+20820,0.25,53.0,Lincolnshire
+20830,0.25,52.75,East Anglia
+20840,0.25,52.5,East Anglia
+20850,0.25,52.25,East Anglia
+20860,0.25,52.0,Essex
+20870,0.25,51.75,Essex
+20880,0.25,51.5,Outer London — East and North East
+20890,0.25,51.25,Kent
+20900,0.25,51.0,"Surrey, East and West Sussex"
+20910,0.25,50.75,"Surrey, East and West Sussex"
 20930,0.25,49.75,Normandie
 20940,0.25,49.5,Normandie
 20950,0.25,49.25,Normandie
@@ -303,6 +783,16 @@
 21190,0.25,43.25,Occitanie
 21200,0.25,43.0,Occitanie
 21210,0.25,42.75,Occitanie
+21410,0.5,53.0,East Anglia
+21420,0.5,52.75,East Anglia
+21430,0.5,52.5,East Anglia
+21440,0.5,52.25,East Anglia
+21450,0.5,52.0,Essex
+21460,0.5,51.75,Essex
+21470,0.5,51.5,Essex
+21480,0.5,51.25,Kent
+21490,0.5,51.0,"Surrey, East and West Sussex"
+21500,0.5,50.75,"Surrey, East and West Sussex"
 21520,0.5,49.75,Normandie
 21530,0.5,49.5,Normandie
 21540,0.5,49.25,Normandie
@@ -332,6 +822,16 @@
 21780,0.5,43.25,Occitanie
 21790,0.5,43.0,Occitanie
 21800,0.5,42.75,Occitanie
+21940,0.75,53.0,East Anglia
+21950,0.75,52.75,East Anglia
+21960,0.75,52.5,East Anglia
+21970,0.75,52.25,East Anglia
+21980,0.75,52.0,Essex
+21990,0.75,51.75,Essex
+22000,0.75,51.5,Essex
+22010,0.75,51.25,Kent
+22020,0.75,51.0,Kent
+22030,0.75,50.75,"Surrey, East and West Sussex"
 22050,0.75,50.0,Normandie
 22060,0.75,49.75,Normandie
 22070,0.75,49.5,Normandie
@@ -362,6 +862,15 @@
 22320,0.75,43.25,Occitanie
 22330,0.75,43.0,Occitanie
 22340,0.75,42.75,Occitanie
+22480,1.0,53.0,East Anglia
+22490,1.0,52.75,East Anglia
+22500,1.0,52.5,East Anglia
+22510,1.0,52.25,East Anglia
+22520,1.0,52.0,East Anglia
+22530,1.0,51.75,Essex
+22540,1.0,51.5,Kent
+22550,1.0,51.25,Kent
+22560,1.0,51.0,Kent
 22590,1.0,50.0,Normandie
 22600,1.0,49.75,Normandie
 22610,1.0,49.5,Normandie
@@ -392,6 +901,15 @@
 22860,1.0,43.25,Occitanie
 22870,1.0,43.0,Occitanie
 22880,1.0,42.75,Occitanie
+23010,1.25,53.0,East Anglia
+23020,1.25,52.75,East Anglia
+23030,1.25,52.5,East Anglia
+23040,1.25,52.25,East Anglia
+23050,1.25,52.0,East Anglia
+23060,1.25,51.75,Essex
+23070,1.25,51.5,Kent
+23080,1.25,51.25,Kent
+23090,1.25,51.0,Kent
 23130,1.25,50.0,Normandie
 23140,1.25,49.75,Normandie
 23150,1.25,49.5,Normandie
@@ -422,6 +940,12 @@
 23400,1.25,43.25,Occitanie
 23410,1.25,43.0,Occitanie
 23420,1.25,42.75,Occitanie
+23540,1.5,53.0,East Anglia
+23550,1.5,52.75,East Anglia
+23560,1.5,52.5,East Anglia
+23570,1.5,52.25,East Anglia
+23580,1.5,52.0,East Anglia
+23610,1.5,51.25,Kent
 23620,1.5,51.0,Hauts-de-France
 23630,1.5,50.75,Hauts-de-France
 23640,1.5,50.5,Hauts-de-France
@@ -457,6 +981,9 @@
 23940,1.5,43.0,Occitanie
 23950,1.5,42.75,Occitanie
 23960,1.5,42.5,Occitanie
+24080,1.75,52.75,East Anglia
+24090,1.75,52.5,East Anglia
+24100,1.75,52.25,East Anglia
 24130,1.75,51.0,Hauts-de-France
 24140,1.75,50.75,Hauts-de-France
 24150,1.75,50.5,Hauts-de-France
